@@ -211,3 +211,8 @@ function runCanvas(callback){
 }
 
 runCanvas(runCountdown);
+
+window.onload = function() {
+    const music= document.getElementById("music");
+    music.volume = 0.2;
+}
