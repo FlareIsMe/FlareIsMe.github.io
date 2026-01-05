@@ -45,17 +45,18 @@ function createIcons() {
 function runCountdown(){
 const word=document.getElementById("wordcontainer");
 
-        word.innerHTML = `HAPPY BIRTHDAY`
-        word.id = `HPBD`;
+    word.innerHTML = `HAPPY BIRTHDAY`
+    word.id = `HPBD`;
 
     setTimeout(()=>{
         word.innerHTML = `<span class="otherwords">HAP</span><span id="wordP" class="name">P</span><span class="otherwords">Y </span><span id="wordB" class="name">B</span><span class="otherwords">IRTH</span><span id="wordD" class="name">D</span><span class="otherwords">AY</span>`;
+        
+        setTimeout(()=>{
+            word.id = `fullname`;
+            word.innerHTML = `Phạm Bạch Dương`;
+        },2000);
     },5000);
 
-    setTimeout(()=>{
-        word.id = `fullname`;
-        word.innerHTML = `Phạm Bạch Dương`;
-    },7000);
 }
 
 createIcons();
@@ -151,8 +152,9 @@ function runCanvas(callback){
         
         if (currentText.trim() === "") {
             for (let i = 0; i < particles.length; i++) {
-                particles[i].targetX = canvas.width/2 + Math.cos(i)*Math.random()*(canvas.height/12);
-                particles[i].targetY = canvas.height/2 + Math.sin(i)*Math.random()*(canvas.height/12);
+                let degree = Math.random()*360;
+                particles[i].targetX = canvas.width/2 + Math.cos(degree)*Math.random()*(canvas.height/12);
+                particles[i].targetY = canvas.height/2 + Math.sin(degree)*Math.random()*(canvas.height/12);
                 particles[i].isFree = true;
             }
         } 
@@ -195,21 +197,17 @@ function runCanvas(callback){
 
     animate();
     
-    //3
-    setTimeout(() => {
-        changeText();
-    }, 500);
+    setTimeout(() => {changeText();
+    setTimeout(() => {changeText();
+    setTimeout(() => {changeText();
+    setTimeout(() => {changeText();
+    setTimeout(() => {changeText();
+    setTimeout(() => {changeText();
+    setTimeout(() => {changeText();
+    setTimeout(() => {changeText();
+    setTimeout(()=>{callback()},500);},1000);},500);},1000);},500);},1000);},500);},1000);}, 500);
 
-    //wait
-    setTimeout(() => {changeText()},1500);
-    setTimeout(() => {changeText()},2000);//2
-    setTimeout(() => {changeText()},3500);//wait
-    setTimeout(() => {changeText()},4000);//1
-    setTimeout(() => {changeText()},5500);//wait
-    setTimeout(() => {changeText()},6000);//0
-    setTimeout(() => {changeText()},7500);//wait
 
-    setTimeout(()=>{callback()},8000);
 }
 
 runCanvas(runCountdown);
