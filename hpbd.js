@@ -1,3 +1,5 @@
+const startbtn= document.getElementById("start");
+
 function createIcons() {
     const iconsList = ['❤️','♒','🔴','🟠','🟡','🟢','🔵','🟣','🎈','🎂','🍰','🎉','🍹','🌟','🌟','🌟','🌟','🌟','🌟'];
 
@@ -56,10 +58,7 @@ const word=document.getElementById("wordcontainer");
             word.innerHTML = `Phạm Bạch Dương`;
         },2000);
     },5000);
-
 }
-
-createIcons();
 
 function runCanvas(callback){
     const canvas = document.getElementById('canvas');
@@ -210,9 +209,11 @@ function runCanvas(callback){
 
 }
 
-runCanvas(runCountdown);
-
-window.onload = function() {
+startbtn.onclick = function(){
+    startbtn.style.display = `none`;
+    runCanvas(runCountdown);
+    createIcons();
     const music= document.getElementById("music");
+    music.play();
     music.volume = 0.2;
 }
