@@ -95,8 +95,6 @@ canvas {
 
 #HPBD{
     font-family: 'Pacifico';
-
-    animation: rotate 4s ease-in-out;
 }
 
 #fullname{
@@ -130,6 +128,22 @@ canvas {
 }
 #wordD{
     animation: slideleftwordD 2s ease-in-out;
+}
+#wordhappy{
+    display: inline-block;
+    animation: slidefromleft 4s ease-in;
+}
+#wordbirthday{
+    display: inline-block;
+    animation: slidefromright 4s ease-in;
+}
+@keyframes slidefromleft{
+    from{transform: translateX(-120vw);}
+    to{transform: translateX(0);}
+}
+@keyframes slidefromright{
+    from{transform: translateX(120vw);}
+    to{transform: translateX(0);}
 }
 
 @keyframes slideleftwordP {
