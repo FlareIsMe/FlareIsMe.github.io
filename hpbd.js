@@ -1,9 +1,16 @@
 const startbtn= document.getElementById("start");
-
+const ColorsFree = [
+    '#ffb8b8dc',
+    '#ffb8b8c0',
+    '#ffb8b897',
+    '#ffb8b87b',
+    '#ffb8b84e',
+    '#ffb8b813',
+];
 function createIcons() {
     const iconsList = ['❤️','♒','🔴','🟠','🟡','🟢','🔵','🟣','🎈','🎂','🍰','🎉','🍹','🌟','🌟','🌟','🌟','🌟','🌟'];
 
-    const totalIcons = 100; 
+    const totalIcons = 50; 
     
     const container = document.querySelector('.bgcontainer');
 
@@ -47,7 +54,7 @@ function createIcons() {
 function runCountdown(){
 const word=document.getElementById("wordcontainer");
 
-    word.innerHTML = `HAPPY BIRTHDAY`
+    word.innerHTML = `<span id="wordhappy">HAPPY</span> <span id="wordbirthday">BIRTHDAY</span>`
     word.id = `HPBD`;
 
     setTimeout(()=>{
@@ -110,8 +117,9 @@ function runCanvas(callback){
         }
 
         draw() {
-            ctx.fillStyle = this.isFree ? '#ffb8b847' : '#ffb8b8';
+            ctx.fillStyle = this.isFree ? ColorsFree[Math.floor(Math.random()*6)] : '#ffb8b8';
             ctx.beginPath();
+            this.size = this.isFree ? Math.random()*2+1 : 1;
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
         }
@@ -180,7 +188,8 @@ function runCanvas(callback){
         if (textIndex >= textArray.length) {
             for (let i = 0; i < particles.length; i++){
                 particles[i].targetX = -10;
-                particles[i].targetY = -10;}
+                particles[i].targetY = -10;
+            }
             textIndex = 0;}
     }
 
@@ -208,6 +217,7 @@ function runCanvas(callback){
 
 
 }
+
 
 startbtn.onclick = function(){
     startbtn.style.display = `none`;
