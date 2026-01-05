@@ -1,0 +1,217 @@
+body{
+    width:100vw;
+    height: 100vh;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 0;
+
+    background-image: url("background.jpg");
+    background-size: 100%;
+}
+
+canvas {
+    z-index:-100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    background-image: url("background.jpg");
+    background-size: 100%;
+}
+
+.bgcontainer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.icons {
+    position: absolute;
+    bottom: -50px;
+    animation: floatUp linear infinite;
+    opacity: 0;
+}
+
+.balloons {
+    position: absolute;
+    bottom: -50px;
+    animation: floatUp linear infinite;
+    opacity: 0;
+}
+
+.stars {
+    position: absolute;
+    animation: falldown linear infinite;
+    opacity: 0;
+}
+
+#wordcontainer, #HPBD, #fullname {
+    z-index: 1000;
+    
+    font-size: clamp(40px, 10vw, 120px); 
+   
+    width: 100%;
+    text-align: center;
+    
+    padding: 0 10px;
+    box-sizing: border-box;
+
+    color: #ffb8b8;
+    font-weight: bolder;
+    text-shadow: 0 0 10px rgb(255, 111, 111), 0 0 20px rgb(255, 107, 107);
+}
+
+#wordcontainer{
+    font-family: 'Codystar', sans-serif;
+
+    animation: fadeinandout 2s infinite ease-in-out;
+}
+
+#HPBD{
+    font-family: 'Pacifico';
+
+    animation: rotate 4s ease-in-out;
+}
+
+#fullname{
+    font-family: 'Pacifico', sans-serif;
+
+    animation: fadein 2s ease-in;
+}
+
+.name{
+    display: inline-block;
+    z-index: 1000;
+
+    font-family: 'Pacifico', sans-serif;
+    font-size: 100%;
+    color: #ffb8b8;
+    font-weight:bolder;
+
+    text-shadow: 0 0 10px rgb(255, 111, 111), 0 0 20px rgb(255, 107, 107);
+}
+
+.otherwords{
+    opacity:0;
+    animation: fadeout 2s;
+    animation-iteration-count:initial;
+}
+
+#wordP{
+    animation: slideleftwordP 2s ease-in-out;
+}
+#wordB{
+    animation: slideleftwordB 2s ease-in-out;
+}
+#wordD{
+    animation: slideleftwordD 2s ease-in-out;
+}
+
+@keyframes slideleftwordP {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-1.2em); opacity: 0; } 
+}
+
+@keyframes slideleftwordB {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-0.8em); opacity: 0; }
+}
+
+@keyframes slideleftwordD {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-1.5em); opacity: 0; }
+}
+
+@keyframes fadeout{
+    0%{opacity:1;}
+    100%{opacity:0;}
+}
+
+@keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+
+@keyframes shake{
+    0%{
+        transform: rotate(1.5deg);
+    }
+    100%{
+        transform: rotate(-1.5deg);
+    }
+}
+
+@keyframes fadeinandout {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity:0;
+    }
+}
+
+@keyframes rotate{
+    from{
+        transform: rotateY(0deg) scale(0.01);
+        opacity: 0.2;
+    }
+    to{
+        transform: rotateY(360deg) scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-60vh) translateX(3vw); 
+    }
+    100% {
+        transform: translateY(-120vh) translateX(-20px);
+        opacity: 0;
+    }
+}
+
+@keyframes floatUp1 {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-60vh) translateX(-3vw); 
+    }
+    100% {
+        transform: translateY(-120vh) translateX(20px);
+        opacity: 0;
+    }
+}
+
+@keyframes falldown1 {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    100% {
+        transform: translateY(60vh) translateX(8vw) rotate(180deg);
+        opacity:0;
+    }
+}
+
+@keyframes falldown0 {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    100% {
+        transform: translateY(60vh) translateX(-8vw) rotate(-180deg);
+        opacity:0;
+    }
+}

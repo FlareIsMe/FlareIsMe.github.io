@@ -1,0 +1,215 @@
+function createIcons() {
+    const iconsList = ['❤️','♒','🔴','🟠','🟡','🟢','🔵','🟣','🎈','🎂','🍰','🎉','🍹','🌟','🌟','🌟','🌟','🌟','🌟'];
+
+    const totalIcons = 100; 
+    
+    const container = document.querySelector('.bgcontainer');
+
+    for (let i = 0; i < totalIcons; i++) {
+        const iconEl = document.createElement('div');
+        
+        iconEl.innerText = iconsList[Math.floor(Math.random() * iconsList.length)];
+        
+        if(iconEl.innerText=='🌟'){
+            iconEl.classList.add('stars');
+            iconEl.style.top = -(Math.random()*10 + 5) + 'vh';
+            if(Math.round(Math.random())==0) iconEl.style.animationName = `falldown0`;
+            else iconEl.style.animationName = `falldown1`;
+        }
+        else if(iconEl.innerText == '🎈'){
+            iconEl.classList.add('balloons');
+            if(Math.round(Math.random())==0) iconEl.style.animationName = `floatUp`;
+            else iconEl.style.animationName = `floatUp1`;
+        }
+        else{
+            iconEl.classList.add('icons');
+            if(Math.round(Math.random())==0) iconEl.style.animationName = `floatUp`;
+            else iconEl.style.animationName = `floatUp1`;
+        }
+
+        
+        iconEl.style.left = Math.random() * 100 + '%';
+
+        const size = Math.random() * 15 + 10; 
+        iconEl.style.fontSize = size + 'px';
+        
+        iconEl.style.animationDuration = (Math.random() * 3 + 5) + 's';
+        
+        iconEl.style.animationDelay = Math.random() * 5 + 's';
+
+        iconEl.style.opacity = Math.random() * 0.5 +0.5;
+        container.appendChild(iconEl);
+    }
+}
+
+function runCountdown(){
+const word=document.getElementById("wordcontainer");
+
+        word.innerHTML = `HAPPY BIRTHDAY`
+        word.id = `HPBD`;
+
+    setTimeout(()=>{
+        word.innerHTML = `<span class="otherwords">HAP</span><span id="wordP" class="name">P</span><span class="otherwords">Y </span><span id="wordB" class="name">B</span><span class="otherwords">IRTH</span><span id="wordD" class="name">D</span><span class="otherwords">AY</span>`;
+    },5000);
+
+    setTimeout(()=>{
+        word.id = `fullname`;
+        word.innerHTML = `Phạm Bạch Dương`;
+    },7000);
+}
+
+createIcons();
+
+function runCanvas(callback){
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    let textIndex = 0;
+    const textArray = ["3", "", "2", "", "1", "", "0", ""];
+
+    let fontSize = window.innerWidth / 6;
+    ctx.font = `bold ${fontSize}px Arial black`;
+    
+    class Particle {
+        constructor(x, y) {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.targetX = x;
+            this.targetY = y;
+            this.size = 1;
+            
+            this.ease = 0.05 + Math.random() * 0.05; 
+            
+            this.angle = Math.random() * Math.PI * 2; 
+            this.isFree = false; 
+        }
+
+        update() {
+            const dx = this.targetX - this.x;
+            const dy = this.targetY - this.y;
+            
+            const distanceSq = dx * dx + dy * dy;
+
+            if (distanceSq > 1) {
+                this.x += dx * this.ease;
+                this.y += dy * this.ease;
+            } 
+            else {
+                this.x = this.targetX;
+                this.y = this.targetY;
+            }
+            if (this.isFree) {
+                this.angle += 0.02;
+                this.x += Math.sin(this.angle) * 0.15;
+                this.y += Math.cos(this.angle) * 0.15;
+            }
+        }
+
+        draw() {
+            ctx.fillStyle = this.isFree ? '#ffb8b847' : '#ffb8b8';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function getTextCoordinates(text) {
+        ctx.fillStyle = 'rgb(6, 6, 6)';
+        fontSize = window.innerWidth / 6; 
+        ctx.font = `bold ${fontSize}px 'Arial'`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        ctx.fillText(text, canvas.width/2, canvas.height/2);
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const buffer = imageData.data;
+        let coordinates = [];
+        
+        let gap = 3; 
+        if (window.innerWidth < 600) gap = 3;
+
+        for (let y = 0; y < canvas.height; y += gap) {
+            for (let x = 0; x < canvas.width; x += gap) {
+                const index = (y * canvas.width + x) * 4;
+                if (buffer[index] == 6) {
+                    coordinates.push({x: x, y: y});
+                }
+            }
+        }
+        return coordinates;
+    }
+
+    function changeText() {
+        const currentText = textArray[textIndex];
+        
+        const newCoords = getTextCoordinates(currentText);
+        
+        if (currentText.trim() === "") {
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].targetX = canvas.width/2 + Math.cos(i)*Math.random()*(canvas.height/12);
+                particles[i].targetY = canvas.height/2 + Math.sin(i)*Math.random()*(canvas.height/12);
+                particles[i].isFree = true;
+            }
+        } 
+        
+        else {
+            
+            if (particles.length < newCoords.length) {
+                const coordsToAdd = newCoords.length - particles.length;
+                for (let i = 0; i < coordsToAdd; i++) {
+                    particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+                }
+            } else if (particles.length > newCoords.length) {
+                particles.length = newCoords.length;
+            }
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].targetX = newCoords[i].x;
+                particles[i].targetY = newCoords[i].y;
+                particles[i].isFree = false;
+            }
+        }
+
+        textIndex++;
+        if (textIndex >= textArray.length) {
+            for (let i = 0; i < particles.length; i++){
+                particles[i].targetX = -10;
+                particles[i].targetY = -10;}
+            textIndex = 0;}
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+        }
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+    
+    //3
+    setTimeout(() => {
+        changeText();
+    }, 500);
+
+    //wait
+    setTimeout(() => {changeText()},1500);
+    setTimeout(() => {changeText()},2000);//2
+    setTimeout(() => {changeText()},3500);//wait
+    setTimeout(() => {changeText()},4000);//1
+    setTimeout(() => {changeText()},5500);//wait
+    setTimeout(() => {changeText()},6000);//0
+    setTimeout(() => {changeText()},7500);//wait
+
+    setTimeout(()=>{callback()},8000);
+}
+
+runCanvas(runCountdown);
