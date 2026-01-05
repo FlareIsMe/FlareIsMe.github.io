@@ -71,8 +71,8 @@ function runCanvas(callback){
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth*99/100;
+    canvas.height = window.innerHeight*99/100;
 
     let particles = [];
     let textIndex = 0;
