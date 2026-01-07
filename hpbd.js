@@ -1,78 +1,79 @@
-const startbtn= document.getElementById("start");
+const startbtn = document.getElementById("start");
 const ColorsFree = [
-    '#ffb8b8dc',
+    '#ffa9a9dc',
     '#ffb8b8c0',
     '#ffb8b897',
-    '#ffb8b87b',
+    '#ff9e9e7b',
     '#ffb8b84e',
-    '#ffb8b813',
+    '#f9a0a013',
 ];
-function createIcons() {
-    const iconsList = ['❤️','♒','🔴','🟠','🟡','🟢','🔵','🟣','🎈','🎂','🍰','🎉','🍹','🌟','🌟','🌟','🌟','🌟','🌟'];
 
-    const totalIcons = 50; 
-    
+function createIcons() {
+    const iconsList = ['❤️', '♒', '🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '🎈', '🎂', '🍰', '🎉', '🍹', '🌟', '🌟', '🌟', '🌟', '🌟', '🌟'];
+
+    const totalIcons = 50;
+
     const container = document.querySelector('.bgcontainer');
 
     for (let i = 0; i < totalIcons; i++) {
         const iconEl = document.createElement('div');
-        
+
         iconEl.innerText = iconsList[Math.floor(Math.random() * iconsList.length)];
-        
-        if(iconEl.innerText=='🌟'){
+
+        if (iconEl.innerText == '🌟') {
             iconEl.classList.add('stars');
-            iconEl.style.top = -(Math.random()*10 + 5) + 'vh';
-            if(Math.round(Math.random())==0) iconEl.style.animationName = `falldown0`;
+            iconEl.style.top = -(Math.random() * 10 + 5) + 'vh';
+            if (Math.round(Math.random()) == 0) iconEl.style.animationName = `falldown0`;
             else iconEl.style.animationName = `falldown1`;
         }
-        else if(iconEl.innerText == '🎈'){
+        else if (iconEl.innerText == '🎈') {
             iconEl.classList.add('balloons');
-            if(Math.round(Math.random())==0) iconEl.style.animationName = `floatUp`;
+            if (Math.round(Math.random()) == 0) iconEl.style.animationName = `floatUp`;
             else iconEl.style.animationName = `floatUp1`;
         }
-        else{
+        else {
             iconEl.classList.add('icons');
-            if(Math.round(Math.random())==0) iconEl.style.animationName = `floatUp`;
+            if (Math.round(Math.random()) == 0) iconEl.style.animationName = `floatUp`;
             else iconEl.style.animationName = `floatUp1`;
         }
 
-        
+
         iconEl.style.left = Math.random() * 100 + '%';
 
-        const size = Math.random() * 15 + 10; 
+        const size = Math.random() * 15 + 10;
         iconEl.style.fontSize = size + 'px';
-        
+
         iconEl.style.animationDuration = (Math.random() * 3 + 5) + 's';
-        
+
         iconEl.style.animationDelay = Math.random() * 5 + 's';
 
-        iconEl.style.opacity = Math.random() * 0.5 +0.5;
+        iconEl.style.opacity = Math.random() * 0.5 + 0.5;
         container.appendChild(iconEl);
     }
 }
 
-function runCountdown(){
-const word=document.getElementById("wordcontainer");
+function runCountdown() {
+    const word = document.getElementById("wordcontainer");
 
-    word.innerHTML = `<span id="wordhappy">HAPPY</span> <span id="wordbirthday">BIRTHDAY</span>`
+    word.innerHTML = `<span id="wordhappy">HAPPY</span> <span id="wordbirthday">BIRTHDAY</span>`;
     word.id = `HPBD`;
 
-    setTimeout(()=>{
+    setTimeout(() => {
         word.innerHTML = `<span class="otherwords">HAP</span><span id="wordP" class="name">P</span><span class="otherwords">Y </span><span id="wordB" class="name">B</span><span class="otherwords">IRTH</span><span id="wordD" class="name">D</span><span class="otherwords">AY</span>`;
-        
-        setTimeout(()=>{
+
+        setTimeout(() => {
             word.id = `fullname`;
             word.innerHTML = `Phạm Bạch Dương`;
-        },2000);
-    },5000);
+        }, 2000);
+    }, 5000);
 }
 
-function runCanvas(callback){
+function runCanvas(callback) {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    
-    canvas.width = window.innerWidth*99/100;
-    canvas.height = window.innerHeight*99/100;
+
+    canvas.width = window.innerWidth * 99 / 100;
+    canvas.height = window.innerHeight * 99 / 100;
 
     let particles = [];
     let textIndex = 0;
@@ -80,7 +81,7 @@ function runCanvas(callback){
 
     let fontSize = window.innerWidth / 6;
     ctx.font = `bold ${fontSize}px Arial black`;
-    
+
     class Particle {
         constructor(x, y) {
             this.x = Math.random() * canvas.width;
@@ -88,23 +89,23 @@ function runCanvas(callback){
             this.targetX = x;
             this.targetY = y;
             this.size = 1;
-            
-            this.ease = 0.05 + Math.random() * 0.05; 
-            
-            this.angle = Math.random() * Math.PI * 2; 
-            this.isFree = false; 
+
+            this.ease = 0.05 + Math.random() * 0.05;
+
+            this.angle = Math.random() * Math.PI * 2;
+            this.isFree = false;
         }
 
         update() {
             const dx = this.targetX - this.x;
             const dy = this.targetY - this.y;
-            
+
             const distanceSq = dx * dx + dy * dy;
 
             if (distanceSq > 1) {
                 this.x += dx * this.ease;
                 this.y += dy * this.ease;
-            } 
+            }
             else {
                 this.x = this.targetX;
                 this.y = this.targetY;
@@ -117,9 +118,9 @@ function runCanvas(callback){
         }
 
         draw() {
-            ctx.fillStyle = this.isFree ? ColorsFree[Math.floor(Math.random()*6)] : '#ffb8b8';
+            ctx.fillStyle = this.isFree ? ColorsFree[Math.floor(Math.random() * 6)] : '#ffb8b8';
             ctx.beginPath();
-            this.size = this.isFree ? Math.random()*2+1 : 1;
+            this.size = this.isFree ? Math.random() * 2 + 1 : 1;
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
         }
@@ -127,25 +128,25 @@ function runCanvas(callback){
 
     function getTextCoordinates(text) {
         ctx.fillStyle = 'rgb(6, 6, 6)';
-        fontSize = window.innerWidth / 6; 
+        fontSize = window.innerWidth / 6;
         ctx.font = `bold ${fontSize}px 'Arial'`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        
-        ctx.fillText(text, canvas.width/2, canvas.height/2);
+
+        ctx.fillText(text, canvas.width / 2, canvas.height / 2);
 
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const buffer = imageData.data;
         let coordinates = [];
-        
-        let gap = 3; 
+
+        let gap = 3;
         if (window.innerWidth < 600) gap = 3;
 
         for (let y = 0; y < canvas.height; y += gap) {
             for (let x = 0; x < canvas.width; x += gap) {
                 const index = (y * canvas.width + x) * 4;
                 if (buffer[index] == 6) {
-                    coordinates.push({x: x, y: y});
+                    coordinates.push({ x: x, y: y });
                 }
             }
         }
@@ -154,20 +155,20 @@ function runCanvas(callback){
 
     function changeText() {
         const currentText = textArray[textIndex];
-        
+
         const newCoords = getTextCoordinates(currentText);
-        
+
         if (currentText.trim() === "") {
             for (let i = 0; i < particles.length; i++) {
-                let degree = Math.random()*360;
-                particles[i].targetX = canvas.width/2 + Math.cos(degree)*Math.random()*(canvas.height/12);
-                particles[i].targetY = canvas.height/2 + Math.sin(degree)*Math.random()*(canvas.height/12);
+                let degree = Math.random() * 360;
+                particles[i].targetX = canvas.width / 2 + Math.cos(degree) * Math.random() * (canvas.height / 12);
+                particles[i].targetY = canvas.height / 2 + Math.sin(degree) * Math.random() * (canvas.height / 12);
                 particles[i].isFree = true;
             }
-        } 
-        
+        }
+
         else {
-            
+
             if (particles.length < newCoords.length) {
                 const coordsToAdd = newCoords.length - particles.length;
                 for (let i = 0; i < coordsToAdd; i++) {
@@ -186,11 +187,12 @@ function runCanvas(callback){
 
         textIndex++;
         if (textIndex >= textArray.length) {
-            for (let i = 0; i < particles.length; i++){
+            for (let i = 0; i < particles.length; i++) {
                 particles[i].targetX = -10;
                 particles[i].targetY = -10;
             }
-            textIndex = 0;}
+            textIndex = 0;
+        }
     }
 
     function animate() {
@@ -204,26 +206,41 @@ function runCanvas(callback){
     }
 
     animate();
-    
-    setTimeout(() => {changeText();
-    setTimeout(() => {changeText();
-    setTimeout(() => {changeText();
-    setTimeout(() => {changeText();
-    setTimeout(() => {changeText();
-    setTimeout(() => {changeText();
-    setTimeout(() => {changeText();
-    setTimeout(() => {changeText();
-    setTimeout(()=>{callback()},500);},1000);},500);},1000);},500);},1000);},500);},1000);}, 500);
 
+    setTimeout(() => {
+        changeText();
+        setTimeout(() => {
+            changeText();
+            setTimeout(() => {
+                changeText();
+                setTimeout(() => {
+                    changeText();
+                    setTimeout(() => {
+                        changeText();
+                        setTimeout(() => {
+                            changeText();
+                            setTimeout(() => {
+                                changeText();
+                                setTimeout(() => {
+                                    changeText();
+                                    callback();
+                                }, 1000);
+                            }, 500);
+                        }, 1000);
+                    }, 500);
+                }, 1000);
+            }, 500);
+        }, 1000);
+    }, 500);
 
 }
 
 
-startbtn.onclick = function(){
+startbtn.onclick = function () {
     startbtn.style.display = `none`;
     runCanvas(runCountdown);
     createIcons();
-    const music= document.getElementById("music");
+    const music = document.getElementById("music");
     music.play();
     music.volume = 0.2;
 }
