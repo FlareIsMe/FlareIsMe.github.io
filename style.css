@@ -74,7 +74,7 @@ canvas {
 #wordcontainer, #HPBD, #fullname {
     z-index: 1000;
     
-    font-size: clamp(40px, 10vw, 120px); 
+    font-size: clamp(30px, 8vw, 120px); 
    
     width: 100%;
     text-align: center;
@@ -131,11 +131,11 @@ canvas {
 }
 #wordhappy{
     display: inline-block;
-    animation: slidefromleft 4s ease-in;
+    animation: slidefromleft 3s ease-in;
 }
 #wordbirthday{
     display: inline-block;
-    animation: slidefromright 4s ease-in;
+    animation: slidefromright 3s ease-in;
 }
 @keyframes slidefromleft{
     from{transform: translateX(-120vw);}
