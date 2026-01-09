@@ -142,7 +142,7 @@ function runCanvas(callback) {
     const textArray = ["3", "", "2", "", "1", "", "0", ""];
 
     let fontSize = window.innerWidth / 6;
-    ctx.font = `bold ${fontSize}px 'Fasthand black`;
+    ctx.font = `bold ${fontSize}px 'Fasthand'`;
 
     class Particle {
         constructor(x, y) {
@@ -307,10 +307,11 @@ function runCanvas(callback) {
 
 
 startbtn.onclick = function () {
-    startbtn.style.display = `none`;
+    setTimeout(()=>{startbtn.style.display = `none`;
     runCanvas(runCountdown);
     createIcons();
     const music = document.getElementById("music");
     music.play();
-    music.volume = 0.2;
+    music.volume = 0.15;
+    msgbtn.style.display = 'block';},300)
 }
