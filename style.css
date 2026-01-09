@@ -211,7 +211,7 @@ canvas {
 
 #msgicon {
     width: 6vw;
-    display: block;
+    display: none;
     border-radius:100%;
     background-image: url("message.png");
     z-index: 10000;
