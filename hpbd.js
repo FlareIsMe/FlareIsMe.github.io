@@ -1,4 +1,13 @@
 const startbtn = document.getElementById("start");
+const cake1 = document.getElementById("cake1");
+const cake2 = document.getElementById("cake2");
+const cakes = document.querySelectorAll("cakes");
+
+const msgbtn = document.getElementById("msgicon");
+const msgbox = document.getElementById("msgbox");
+const noti = document.getElementById("noti");
+let boxOpened = false;
+
 const ColorsFree = [
     '#ffa9a9dc',
     '#ffb8b8c0',
@@ -64,6 +73,24 @@ function runCountdown() {
         setTimeout(() => {
             word.id = `fullname`;
             word.innerHTML = `Phạm Bạch Dương`;
+            setTimeout(()=>{
+                msgbtn.onclick = function(){
+                    msgbtn.style.border = 0;
+                    if(boxOpened){
+                        msgbox.style.display = 'none';
+                        boxOpened = false;
+                    }
+                    else{
+                        msgbox.style.display = 'block';
+                        boxOpened = true;
+                        noti.style.display = 'none';
+                    }
+                }
+                noti.style.display = 'block';
+                msgbtn.style.border = `solid 3px rgb(255, 57, 57)`;
+                msgbox.style.border = `dashed 5px plum`;
+                msgbox.innerHTML = `Aujourd'hui, c'est une spéciale journée de toi.<br>Donc, j'ai créé ce web comme un cadeau à toi. <br>Joyeux anniversaire <3`;
+            },5000);
         }, 2000);
     }, 5000);
 }
@@ -80,7 +107,7 @@ function runCanvas(callback) {
     const textArray = ["3", "", "2", "", "1", "", "0", ""];
 
     let fontSize = window.innerWidth / 6;
-    ctx.font = `bold ${fontSize}px Arial black`;
+    ctx.font = `bold ${fontSize}px 'Fasthand black`;
 
     class Particle {
         constructor(x, y) {
@@ -129,7 +156,7 @@ function runCanvas(callback) {
     function getTextCoordinates(text) {
         ctx.fillStyle = 'rgb(6, 6, 6)';
         fontSize = window.innerWidth / 6;
-        ctx.font = `bold ${fontSize}px 'Arial'`;
+        ctx.font = `bold ${fontSize}px 'Fasthand'`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
@@ -222,6 +249,14 @@ function runCanvas(callback) {
                             setTimeout(() => {
                                 changeText();
                                 setTimeout(() => {
+                                    cake1.style.display = 'block';
+                                    cake2.style.display = 'block';
+                                    setTimeout(() => {
+                                        cake1.style.animationName = 'cakesAnimation';
+                                        cake1.style.animationDuration = '1s';
+                                        cake2.style.animationName = 'cakesAnimation';
+                                        cake2.style.animationDuration = '1s';
+                                    }, 3000);
                                     changeText();
                                     callback();
                                 }, 1000);
