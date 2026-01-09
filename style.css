@@ -168,26 +168,35 @@ canvas {
     animation-direction: alternate;
 }
 
-#msgbox{
-    width: auto;
-    height: auto;
-    margin:10%;
-    display: none;
+#msgbox {
+    width: 60%;
+    height: 60%;
+    margin: 10%;
+    display: none; 
     position: absolute;
     z-index: 100000;
 
     color: black;
-    font-size: 3.5vw;
+    font-size: 3vw;
     font-family: 'Pacifico';
-    text-align: center;
+    text-align: left;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+    box-sizing: border-box; 
 
-    background-color:antiquewhite;
+    background-color: antiquewhite;
     background-size: 100%;
     border-radius: 10%;
+    border: dashed 5px plum;
 
-    animation: msgbox 0.5s linear;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#msgbox.active {
+    transform: scale(1);
 }
 
 #msgiconcontainer{
@@ -231,9 +240,22 @@ canvas {
     100%{transform: translateX(-2vw)}
 }
 
-@keyframes msgboxappear{
-    0%{transform: scale(0);}
-    100%{transform: scale(1);}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 40ch;
+  }
+}
+
+@keyframes blink {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
 }
 
 @keyframes cakesAppear {
