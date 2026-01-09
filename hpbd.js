@@ -74,22 +74,57 @@ function runCountdown() {
             word.id = `fullname`;
             word.innerHTML = `Phạm Bạch Dương`;
             setTimeout(()=>{
+                const messageText = `Aujourd'hui, c'est une spéciale journée de toi.<br>Donc, j'ai créé ce web comme un cadeau à toi. <br>Joyeux anniversaire <3<br>-Flare-`;
+                
+                let typingTimeout;
+                function typeWriter(text, elementId, speed = 100) {
+                    const element = document.getElementById(elementId);
+                    element.innerHTML = "";
+                    let i = 0;
+                    
+                    function type() {
+                        if (i < text.length) {
+                            if (text.substring(i, i + 4) === "<br>") {
+                                element.innerHTML += "<br>";
+                                i += 4;
+                            } else {
+                                element.innerHTML += text.charAt(i);
+                                i++;
+                            }
+                            typingTimeout = setTimeout(type, speed);
+                        }
+                    }
+                    clearTimeout(typingTimeout);
+                    type();
+                }
+
                 msgbtn.onclick = function(){
                     msgbtn.style.border = 0;
+                    
                     if(boxOpened){
-                        msgbox.style.display = 'none';
+                        msgbox.classList.remove('active');
                         boxOpened = false;
+                        
+                        setTimeout(() => {
+                            msgbox.style.display = 'none';
+                        }, 500);
                     }
                     else{
-                        msgbox.style.display = 'block';
+                        msgbox.style.display = 'flex';
+                        setTimeout(() => {
+                            msgbox.classList.add('active');
+                            setTimeout(() => {
+                                typeWriter(messageText, "msgbox"); 
+                            }, 300); 
+                        }, 10);
+
                         boxOpened = true;
                         noti.style.display = 'none';
                     }
                 }
+
                 noti.style.display = 'block';
                 msgbtn.style.border = `solid 3px rgb(255, 57, 57)`;
-                msgbox.style.border = `dashed 5px plum`;
-                msgbox.innerHTML = `Aujourd'hui, c'est une spéciale journée de toi.<br>Donc, j'ai créé ce web comme un cadeau à toi. <br>Joyeux anniversaire <3`;
             },5000);
         }, 2000);
     }, 5000);
@@ -166,8 +201,8 @@ function runCanvas(callback) {
         const buffer = imageData.data;
         let coordinates = [];
 
-        let gap = 3;
-        if (window.innerWidth < 600) gap = 3;
+        let gap = 4;
+        if (window.innerWidth < 600) gap = 5;
 
         for (let y = 0; y < canvas.height; y += gap) {
             for (let x = 0; x < canvas.width; x += gap) {
