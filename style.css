@@ -8,7 +8,8 @@ body {
     margin: 0;
 
     background-image: url("background.jpg");
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #start {
@@ -77,7 +78,7 @@ canvas {
 #fullname {
     z-index: 1000;
 
-    font-size: clamp(30px, 8vw, 120px);
+    font-size: clamp(30px, 7.5vw, 120px);
 
     width: 100%;
     text-align: center;
@@ -145,6 +146,121 @@ canvas {
     animation: slidefromright 3s ease-in;
 }
 
+.cakes {
+    width: 12vw;
+    position: absolute;
+    animation: cakesAppear 3s linear;
+}
+
+#cake1 {
+    display: none;
+    top: 4vh;
+    right: 4vw;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cake2 {
+    display: none;
+    bottom: 4vh;
+    left: 4vw;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#msgbox{
+    width: auto;
+    height: auto;
+    margin:10%;
+    display: none;
+    position: absolute;
+    z-index: 100000;
+
+    color: black;
+    font-size: 3.5vw;
+    font-family: 'Pacifico';
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    background-color:antiquewhite;
+    background-size: 100%;
+    border-radius: 10%;
+
+    animation: msgbox 0.5s linear;
+}
+
+#msgiconcontainer{
+    bottom: 6vh;
+    right: 4vw;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+#msgicon {
+    width: 6vw;
+    display: block;
+    border-radius:100%;
+    background-image: url("message.png");
+    z-index: 10000;
+}
+
+#msgicon:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+#msgicon:active{
+    scale: 0.95;
+}
+
+#noti{
+    color:#ffb8b8;
+    text-shadow: 0 0 10px rgb(255, 111, 111), 0 0 20px rgb(255, 107, 107);
+    font-family: 'Pacifico';
+    font-size: 2vw;
+    display: none;
+    animation: notification 1s linear alternate infinite;
+}
+
+@keyframes notification{
+    0%{transform: translateX(0);}
+    100%{transform: translateX(-2vw)}
+}
+
+@keyframes msgboxappear{
+    0%{transform: scale(0);}
+    100%{transform: scale(1);}
+}
+
+@keyframes cakesAppear {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        transform: rotate(8deg);
+        opacity: 1
+    }
+}
+
+@keyframes cakesAnimation {
+    0% {
+        transform: rotate(8deg);
+    }
+
+    50% {
+        transform: translateY(-1vh);
+    }
+
+    100% {
+        transform: rotate(-8deg)
+    }
+}
+
 @keyframes slidefromleft {
     from {
         transform: translateX(-120vw);
@@ -182,7 +298,7 @@ canvas {
     }
 
     100% {
-        transform: translateX(-0.8em);
+        transform: translateX(-0.5em);
         opacity: 0;
     }
 }
