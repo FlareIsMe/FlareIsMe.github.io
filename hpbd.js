@@ -296,6 +296,10 @@ function runCanvas(callback) {
                                         }, 3000);
                                         changeText();
                                         callback();
+                                        setTimeout(() => {
+                                            particles = [];
+                                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                        }, 2000)
                                     }, 1300);
                                 }, 500);
                             }, 1300);
