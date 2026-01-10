@@ -6,7 +6,7 @@ const cakes = document.querySelectorAll("cakes");
 const msgbtn = document.getElementById("msgicon");
 const msgbox = document.getElementById("msgbox");
 const noti = document.getElementById("noti");
-const notisound= document.getElementById("notisound");
+const notisound = document.getElementById("notisound");
 let boxOpened = false;
 
 const ColorsFree = [
@@ -312,13 +312,16 @@ function runCanvas(callback) {
 
 
 startbtn.onclick = function () {
-        startbtn.style.display = `none`;
-        runCanvas(runCountdown);
-        createIcons();
-        const music = document.getElementById("music");
-        music.play();
-        music.volume = 0.15;
-        msgbtn.style.display = 'block';
+    notisound.play();
+    notisound.pause();
+    notisound.currentTime = 0;
+    startbtn.style.display = `none`;
+    runCanvas(runCountdown);
+    createIcons();
+    const music = document.getElementById("music");
+    music.play();
+    music.volume = 0.15;
+    msgbtn.style.display = 'block';
 }
 
 window.alert("Nhớ bật âm lượng và xoay ngang màn hình nhé!");
