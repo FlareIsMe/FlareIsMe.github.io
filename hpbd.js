@@ -143,7 +143,7 @@ function runCanvas(callback) {
     let textIndex = 0;
     const textArray = ["", "3", "", "2", "", "1", "", "0", ""];
 
-    let fontSize = window.innerWidth / 6;
+    let fontSize = window.innerWidth / 8;
     ctx.font = `bold ${fontSize}px 'Fasthand'`;
 
     class Particle {
@@ -192,7 +192,7 @@ function runCanvas(callback) {
 
     function getTextCoordinates(text) {
         ctx.fillStyle = 'rgb(6, 6, 6)';
-        fontSize = window.innerWidth / 6;
+        fontSize = window.innerWidth / 8;
         ctx.font = `bold ${fontSize}px 'Fasthand'`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -204,7 +204,12 @@ function runCanvas(callback) {
         let coordinates = [];
 
         let gap = 6;
-
+        if (window.innerWidth < 1100) {
+            gap = 8;
+        } 
+        else if (window.innerWidth < 600) {
+            gap = 10; 
+        }
         for (let y = 0; y < canvas.height; y += gap) {
             for (let x = 0; x < canvas.width; x += gap) {
                 const index = (y * canvas.width + x) * 4;
