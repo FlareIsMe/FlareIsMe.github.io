@@ -313,5 +313,6 @@ startbtn.onclick = function () {
     const music = document.getElementById("music");
     music.play();
     music.volume = 0.15;
-    msgbtn.style.display = 'block';},300)
+    msgbtn.style.display = 'block';},500)
 }
+
