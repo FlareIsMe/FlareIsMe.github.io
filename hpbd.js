@@ -152,7 +152,7 @@ function runCanvas(callback) {
             this.y = Math.random() * canvas.height;
             this.targetX = x;
             this.targetY = y;
-            this.size = 1;
+            this.size = 1.5;
 
             this.ease = 0.1 + Math.random() * 0.1;
 
@@ -184,7 +184,7 @@ function runCanvas(callback) {
         draw() {
             ctx.fillStyle = this.isFree ? ColorsFree[Math.floor(Math.random() * 6)] : '#ffb8b8';
             ctx.beginPath();
-            this.size = this.isFree ? Math.random() * 2 + 1 : 1;
+            this.size = this.isFree ? Math.random() * 2 + 1 : 1.5;
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
         }
