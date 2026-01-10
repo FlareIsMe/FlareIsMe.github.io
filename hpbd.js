@@ -6,6 +6,7 @@ const cakes = document.querySelectorAll("cakes");
 const msgbtn = document.getElementById("msgicon");
 const msgbox = document.getElementById("msgbox");
 const noti = document.getElementById("noti");
+const notisound= document.getElementById("notisound");
 let boxOpened = false;
 
 const ColorsFree = [
@@ -73,15 +74,15 @@ function runCountdown() {
         setTimeout(() => {
             word.id = `fullname`;
             word.innerHTML = `Phạm Bạch Dương`;
-            setTimeout(()=>{
+            setTimeout(() => {
                 const messageText = `Aujourd'hui, c'est une spéciale journée de toi.<br>Donc, j'ai créé ce web comme un cadeau à toi. <br>Joyeux anniversaire <3<br>-Flare-`;
-                
+
                 let typingTimeout;
-                function typeWriter(text, elementId, speed = 100) {
+                function typeWriter(text, elementId, speed = 80) {
                     const element = document.getElementById(elementId);
                     element.innerHTML = "";
                     let i = 0;
-                    
+
                     function type() {
                         if (i < text.length) {
                             if (text.substring(i, i + 4) === "<br>") {
@@ -98,24 +99,24 @@ function runCountdown() {
                     type();
                 }
 
-                msgbtn.onclick = function(){
+                msgbtn.onclick = function () {
                     msgbtn.style.border = 0;
-                    
-                    if(boxOpened){
+
+                    if (boxOpened) {
                         msgbox.classList.remove('active');
                         boxOpened = false;
-                        
+
                         setTimeout(() => {
                             msgbox.style.display = 'none';
                         }, 500);
                     }
-                    else{
+                    else {
                         msgbox.style.display = 'flex';
                         setTimeout(() => {
                             msgbox.classList.add('active');
                             setTimeout(() => {
-                                typeWriter(messageText, "msgbox"); 
-                            }, 300); 
+                                typeWriter(messageText, "msgbox");
+                            }, 300);
                         }, 10);
 
                         boxOpened = true;
@@ -124,8 +125,9 @@ function runCountdown() {
                 }
 
                 noti.style.display = 'block';
+                notisound.play();
                 msgbtn.style.border = `solid 3px rgb(255, 57, 57)`;
-            },5000);
+            }, 5000);
         }, 2000);
     }, 5000);
 }
@@ -139,7 +141,7 @@ function runCanvas(callback) {
 
     let particles = [];
     let textIndex = 0;
-    const textArray = ["3", "", "2", "", "1", "", "0", ""];
+    const textArray = ["", "3", "", "2", "", "1", "", "0", ""];
 
     let fontSize = window.innerWidth / 6;
     ctx.font = `bold ${fontSize}px 'Fasthand'`;
@@ -284,35 +286,39 @@ function runCanvas(callback) {
                             setTimeout(() => {
                                 changeText();
                                 setTimeout(() => {
-                                    cake1.style.display = 'block';
-                                    cake2.style.display = 'block';
-                                    setTimeout(() => {
-                                        cake1.style.animationName = 'cakesAnimation';
-                                        cake1.style.animationDuration = '1s';
-                                        cake2.style.animationName = 'cakesAnimation';
-                                        cake2.style.animationDuration = '1s';
-                                    }, 3000);
                                     changeText();
-                                    callback();
-                                }, 1000);
-                            }, 500);
-                        }, 1000);
-                    }, 500);
-                }, 1000);
-            }, 500);
-        }, 1000);
-    }, 500);
+                                    setTimeout(() => {
+                                        cake1.style.display = 'block';
+                                        cake2.style.display = 'block';
+                                        setTimeout(() => {
+                                            cake1.style.animationName = 'cakesAnimation';
+                                            cake1.style.animationDuration = '1s';
+                                            cake2.style.animationName = 'cakesAnimation';
+                                            cake2.style.animationDuration = '1s';
+                                        }, 3000);
+                                        changeText();
+                                        callback();
+                                    }, 1000);
+                                }, 500);
+                            }, 1000);
+                        }, 500);
+                    }, 1000);
+                }, 500);
+            }, 1000);
+        }, 500);
+    }, 200)
 
 }
 
 
 startbtn.onclick = function () {
-    setTimeout(()=>{startbtn.style.display = `none`;
-    runCanvas(runCountdown);
-    createIcons();
-    const music = document.getElementById("music");
-    music.play();
-    music.volume = 0.15;
-    msgbtn.style.display = 'block';},500)
+        startbtn.style.display = `none`;
+        runCanvas(runCountdown);
+        createIcons();
+        const music = document.getElementById("music");
+        music.play();
+        music.volume = 0.15;
+        msgbtn.style.display = 'block';
 }
 
+window.alert("Nhớ bật âm lượng nhé!");
