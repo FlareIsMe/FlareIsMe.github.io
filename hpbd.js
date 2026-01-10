@@ -203,8 +203,8 @@ function runCanvas(callback) {
         const buffer = imageData.data;
         let coordinates = [];
 
-        let gap = 4;
-        if (window.innerWidth < 600) gap = 5;
+        let gap = 5;
+        if (window.innerWidth < 600) gap = 6;
 
         for (let y = 0; y < canvas.height; y += gap) {
             for (let x = 0; x < canvas.width; x += gap) {
@@ -298,13 +298,13 @@ function runCanvas(callback) {
                                         }, 3000);
                                         changeText();
                                         callback();
-                                    }, 1000);
+                                    }, 1300);
                                 }, 500);
-                            }, 1000);
+                            }, 1300);
                         }, 500);
-                    }, 1000);
+                    }, 1300);
                 }, 500);
-            }, 1000);
+            }, 1300);
         }, 500);
     }, 200)
 
@@ -321,4 +321,4 @@ startbtn.onclick = function () {
         msgbtn.style.display = 'block';
 }
 
-window.alert("Nhớ bật âm lượng nhé!");
+window.alert("Nhớ bật âm lượng và xoay ngang màn hình nhé!");
