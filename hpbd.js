@@ -204,12 +204,6 @@ function runCanvas(callback) {
         let coordinates = [];
 
         let gap = 6;
-        if (window.innerWidth < 1100) {
-            gap = 8;
-        } 
-        else if (window.innerWidth < 600) {
-            gap = 10; 
-        }
         for (let y = 0; y < canvas.height; y += gap) {
             for (let x = 0; x < canvas.width; x += gap) {
                 const index = (y * canvas.width + x) * 4;
