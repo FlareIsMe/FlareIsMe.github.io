@@ -69,7 +69,7 @@ function runCountdown() {
     word.id = `HPBD`;
 
     setTimeout(() => {
-        word.innerHTML = `<span class="otherwords">HAP</span><span id="wordP" class="name">P</span><span class="otherwords">Y </span><span id="wordB" class="name">B</span><span class="otherwords">IRTH</span><span id="wordD" class="name">D</span><span class="otherwords">AY</span>`;
+        word.innerHTML = `<span class="otherwords">HAP<span id="wordP" class="name">P</span>Y <span id="wordB" class="name">B</span>IRTH<span id="wordD" class="name">D</span>AY</span>`;
 
         setTimeout(() => {
             word.id = `fullname`;
