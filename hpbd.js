@@ -154,7 +154,7 @@ function runCanvas(callback) {
             this.targetY = y;
             this.size = 1;
 
-            this.ease = 0.05 + Math.random() * 0.05;
+            this.ease = 0.1 + Math.random() * 0.1;
 
             this.angle = Math.random() * Math.PI * 2;
             this.isFree = false;
@@ -203,8 +203,7 @@ function runCanvas(callback) {
         const buffer = imageData.data;
         let coordinates = [];
 
-        let gap = 5;
-        if (window.innerWidth < 600) gap = 6;
+        let gap = 6;
 
         for (let y = 0; y < canvas.height; y += gap) {
             for (let x = 0; x < canvas.width; x += gap) {
