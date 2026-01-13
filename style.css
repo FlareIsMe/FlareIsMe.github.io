@@ -23,15 +23,15 @@ body {
     padding: 15px 30px;
     font-size: 20px;
     font-family: 'Pacifico', cursive;
-    background-color: #ffb8b8;
+    background-color: #f5ff85;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 184, 184, 0.8);
+    box-shadow: 0 0 10px rgb(235, 255, 14);
 }
 
 #start:hover {
-    background-color: #ff9e9e;
+    background-color: #efff41;
     transform: translate(-50%, -50%) scale(1.1);
 }
 
@@ -86,9 +86,9 @@ canvas {
     padding: 0 10px;
     box-sizing: border-box;
 
-    color: #ffb8b8;
+    color: #f5ff85;
     font-weight: bolder;
-    text-shadow: 0 0 10px rgb(255, 111, 111), 0 0 20px rgb(255, 107, 107);
+    text-shadow: 0 0 10px rgb(235, 255, 14);
 }
 
 #wordcontainer {
@@ -113,15 +113,15 @@ canvas {
 
     font-family: 'Pacifico', sans-serif;
     font-size: 100%;
-    color: #ffb8b8;
+    color: #f5ff85;
     font-weight: bolder;
 
-    text-shadow: 0 0 10px rgb(255, 111, 111), 0 0 20px rgb(255, 107, 107);
+    text-shadow: 0 0 10px rgb(235, 255, 14);
 }
 
 .otherwords {
-    opacity: 0;
-    animation: fadeout 2s;
+    animation: fadeout 1s;
+    opacity:0;
 }
 
 #wordP {
@@ -185,7 +185,7 @@ canvas {
     padding: 20px;
     box-sizing: border-box; 
 
-    background-color: antiquewhite;
+    background-color: rgb(247, 250, 215);
     background-size: 100%;
     border-radius: 10%;
     border: dashed 5px plum;
@@ -227,12 +227,18 @@ canvas {
 }
 
 #noti{
-    color:#ffb8b8;
-    text-shadow: 0 0 10px rgb(255, 111, 111), 0 0 20px rgb(255, 107, 107);
+    color:#f5ff85;
+    text-shadow: 0 0 10px rgb(235, 255, 14);
     font-family: 'Pacifico';
     font-size: 2vw;
     display: none;
     animation: notification 1s linear alternate infinite;
+}
+
+#imgsnvv{
+    width: 7vw;
+    vertical-align: middle;
+    margin-left: 2vw;
 }
 
 @keyframes notification{
@@ -307,7 +313,6 @@ canvas {
     0% {
         transform: translateX(0);
     }
-
     100% {
         transform: translateX(-1.2em);
         opacity: 0;
@@ -318,7 +323,6 @@ canvas {
     0% {
         transform: translateX(0);
     }
-
     100% {
         transform: translateX(-0.5em);
         opacity: 0;
@@ -329,7 +333,6 @@ canvas {
     0% {
         transform: translateX(0);
     }
-
     100% {
         transform: translateX(-1.5em);
         opacity: 0;
