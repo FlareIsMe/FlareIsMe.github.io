@@ -10,12 +10,12 @@ const notisound = document.getElementById("notisound");
 let boxOpened = false;
 
 const ColorsFree = [
-    '#ffa9a9dc',
-    '#ffb8b8c0',
-    '#ffb8b897',
-    '#ff9e9e7b',
-    '#ffb8b84e',
-    '#f9a0a013',
+    '#f5ff85',
+    '#eefb5f',
+    '#7e8904a2',
+    '#f5ff85',
+    '#f5ff85',
+    '#f5ff85',
 ];
 
 function createIcons() {
@@ -69,7 +69,8 @@ function runCountdown() {
     word.id = `HPBD`;
 
     setTimeout(() => {
-        word.innerHTML = `<span class="otherwords">HAP<span id="wordP" class="name">P</span>Y <span id="wordB" class="name">B</span>IRTH<span id="wordD" class="name">D</span>AY</span>`;
+        word.innerHTML = `<span class="otherwords">HAP</span><span id="wordP" class="name">P</span><span class="otherwords">Y</span> 
+                      <span id="wordB" class="name">B</span><span class="otherwords">IRTH</span><span id="wordD" class="name">D</span><span class="otherwords">AY</span>`;
 
         setTimeout(() => {
             word.id = `fullname`;
@@ -83,6 +84,8 @@ function runCountdown() {
                     element.innerHTML = "";
                     let i = 0;
 
+                    clearTimeout(typingTimeout);
+
                     function type() {
                         if (i < text.length) {
                             if (text.substring(i, i + 4) === "<br>") {
@@ -93,9 +96,16 @@ function runCountdown() {
                                 i++;
                             }
                             typingTimeout = setTimeout(type, speed);
+                        } else {
+                            if (!document.getElementById("imgsnvv")) {
+                                setTimeout(() => {
+                                    if (!document.getElementById("imgsnvv")) {
+                                        element.innerHTML += `<img src="snvvnghen.jpg" id="imgsnvv">`;
+                                    }
+                                }, 1000);
+                            }
                         }
                     }
-                    clearTimeout(typingTimeout);
                     type();
                 }
 
@@ -111,7 +121,7 @@ function runCountdown() {
                         }, 500);
                     }
                     else {
-                        msgbox.style.display = 'flex';
+                        msgbox.style.display = 'block';
                         setTimeout(() => {
                             msgbox.classList.add('active');
                             setTimeout(() => {
@@ -144,7 +154,7 @@ function runCanvas(callback) {
     const textArray = ["", "3", "", "2", "", "1", "", "0", ""];
 
     let fontSize = window.innerWidth / 8;
-    ctx.font = `bold ${fontSize}px 'Fasthand'`;
+    ctx.font = `bold ${fontSize}px 'Arial'`;
 
     class Particle {
         constructor(x, y) {
@@ -182,7 +192,7 @@ function runCanvas(callback) {
         }
 
         draw() {
-            ctx.fillStyle = this.isFree ? ColorsFree[Math.floor(Math.random() * 6)] : '#ffb8b8';
+            ctx.fillStyle = this.isFree ? ColorsFree[Math.floor(Math.random() * 6)] : '#f5ff85';
             ctx.beginPath();
             this.size = this.isFree ? Math.random() * 2 + 1 : 1.5;
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -193,7 +203,7 @@ function runCanvas(callback) {
     function getTextCoordinates(text) {
         ctx.fillStyle = 'rgb(6, 6, 6)';
         fontSize = window.innerWidth / 8;
-        ctx.font = `bold ${fontSize}px 'Fasthand'`;
+        ctx.font = `bold ${fontSize}px 'Arial'`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
