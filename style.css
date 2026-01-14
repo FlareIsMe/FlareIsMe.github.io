@@ -23,7 +23,7 @@ body {
     padding: 15px 30px;
     font-size: 20px;
     font-family: 'Pacifico', cursive;
-    background-color: #f5ff85;
+    background-color: #FFEA8F;
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -31,7 +31,7 @@ body {
 }
 
 #start:hover {
-    background-color: #efff41;
+    background-color: #fae06b;
     transform: translate(-50%, -50%) scale(1.1);
 }
 
@@ -86,7 +86,7 @@ canvas {
     padding: 0 10px;
     box-sizing: border-box;
 
-    color: #f5ff85;
+    color: #FFEA8F;
     font-weight: bolder;
     text-shadow: 0 0 10px rgb(235, 255, 14);
 }
@@ -113,7 +113,7 @@ canvas {
 
     font-family: 'Pacifico', sans-serif;
     font-size: 100%;
-    color: #f5ff85;
+    color: #FFEA8F;
     font-weight: bolder;
 
     text-shadow: 0 0 10px rgb(235, 255, 14);
@@ -227,7 +227,7 @@ canvas {
 }
 
 #noti{
-    color:#f5ff85;
+    color:#FFEA8F;
     text-shadow: 0 0 10px rgb(235, 255, 14);
     font-family: 'Pacifico';
     font-size: 2vw;
