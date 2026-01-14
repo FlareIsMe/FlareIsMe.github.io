@@ -10,12 +10,12 @@ const notisound = document.getElementById("notisound");
 let boxOpened = false;
 
 const ColorsFree = [
-    '#f5ff85',
-    '#eefb5f',
-    '#7e8904a2',
-    '#f5ff85',
-    '#f5ff85',
-    '#f5ff85',
+    '#FFEA8F',
+    '#fadb52c5',
+    '#FFEA8F',
+    '#ccb75bb3',
+    '#ffeea2',
+    '#FFEA8F',
 ];
 
 function createIcons() {
@@ -192,7 +192,7 @@ function runCanvas(callback) {
         }
 
         draw() {
-            ctx.fillStyle = this.isFree ? ColorsFree[Math.floor(Math.random() * 6)] : '#f5ff85';
+            ctx.fillStyle = this.isFree ? ColorsFree[Math.floor(Math.random() * 6)] : '#FFEA8F';
             ctx.beginPath();
             this.size = this.isFree ? Math.random() * 2 + 1 : 1.5;
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
