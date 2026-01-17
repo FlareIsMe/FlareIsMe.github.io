@@ -76,7 +76,7 @@ function runCountdown() {
             word.id = `fullname`;
             word.innerHTML = `Phạm Bạch Dương`;
             setTimeout(() => {
-                const messageText = `Aujourd'hui, c'est une spéciale journée de toi.<br>Donc, j'ai créé ce web comme un cadeau à toi. <br>Joyeux anniversaire <3<br>-Flare-`;
+                const messageText = `Aujourd'hui, c'est une spéciale journée de toi.<br>Donc, j'ai créé ce web comme un cadeau à toi. <br>Joyeux anniversaire<br>-Flare-`;
 
                 let typingTimeout;
                 function typeWriter(text, elementId, speed = 80) {
@@ -337,3 +337,4 @@ startbtn.onclick = function () {
 }
 
 window.alert("Nhớ bật âm lượng và xoay ngang màn hình nhé!");
+
